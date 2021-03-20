@@ -5,7 +5,7 @@ from keras.models import Model
 from keras.layers import Dense, Conv2D, Conv3D, BatchNormalization, Activation, \
 						Concatenate, AvgPool2D, Input, MaxPool2D, UpSampling2D, Add, \
 						ZeroPadding2D, ZeroPadding3D, Lambda, Reshape, Flatten, LeakyReLU
-from keras_contrib.layers import InstanceNormalization
+# from keras_contrib.layers import InstanceNormalization
 from keras.callbacks import ModelCheckpoint
 from keras import backend as K
 import keras
@@ -15,14 +15,15 @@ import librosa
 import scipy
 from keras.utils import plot_model
 import tensorflow as tf
-from keras.utils import multi_gpu_model
+import tensorflow_addons as tfa
+# from keras.utils import multi_gpu_model
 import tensorflow as tf
 from keras import backend as K
 
 class ModelMGPU(Model):
     def __init__(self, ser_model, gpus):
-        pmodel = multi_gpu_model(ser_model, gpus)
-        self.__dict__.update(pmodel.__dict__)
+        # pmodel = multi_gpu_model(ser_model, gpus)
+        # self.__dict__.update(pmodel.__dict__)
         self._smodel = ser_model
 
     def __getattribute__(self, attrname):
@@ -43,7 +44,7 @@ def contrastive_loss(y_true, y_pred):
 def conv_block(x, num_filters, kernel_size=3, strides=2, padding='same'):
 	x = Conv2D(filters=num_filters, kernel_size= kernel_size, 
 					strides=strides, padding=padding)(x)
-	x = InstanceNormalization()(x)
+	x = tfa.InstanceNormalization()(x)
 	x = LeakyReLU(alpha=.2)(x)
 	return x
 

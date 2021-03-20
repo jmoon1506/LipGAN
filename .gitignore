@@ -2,6 +2,12 @@
 *.h5
 __pycache__
 *.avi
+*.mp3
 *.mp4
 *.dat
 *.jpg
+*.jpeg
+*.png
+*.wav
+.DS_Store
+outputs/

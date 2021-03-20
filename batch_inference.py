@@ -209,7 +209,7 @@ def main():
 
 	out.release()
 
-	command = 'ffmpeg -i {} -i {} -strict -2 -q:v 1 {}'.format(args.audio, path.join(args.results_dir, 'result.avi'), 
+	command = 'ffmpeg -y -i {} -i {} -strict -2 -q:v 1 {}'.format(args.audio, path.join(args.results_dir, 'result.avi'), 
 														path.join(args.results_dir, 'result_voice.avi'))
 	subprocess.call(command, shell=True)
 

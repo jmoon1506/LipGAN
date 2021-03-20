@@ -15,13 +15,13 @@ import librosa
 import scipy
 from keras.utils import plot_model
 import tensorflow as tf
-from keras.utils import multi_gpu_model
+# from keras.utils import multi_gpu_model
 from discriminator import contrastive_loss
 
 class ModelMGPU(Model):
     def __init__(self, ser_model, gpus):
-        pmodel = multi_gpu_model(ser_model, gpus)
-        self.__dict__.update(pmodel.__dict__)
+        # pmodel = multi_gpu_model(ser_model, gpus)
+        # self.__dict__.update(pmodel.__dict__)
         self._smodel = ser_model
 
     def __getattribute__(self, attrname):

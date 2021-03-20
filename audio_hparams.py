@@ -1,9 +1,11 @@
-from tensorflow.contrib.training import HParams
 from glob import glob
-import os, pickle
+import os, pickle, collections
+
+def get_hparams(**kwargs):
+    return collections.namedtuple('GenericDict', kwargs.keys())(**kwargs)
 
 # Default hyperparameters
-hparams = HParams(
+hparams = get_hparams(
 	num_mels=80,  # Number of mel-spectrogram channels and local conditioning dimensionality
 	#  network
 	rescale=True,  # Whether to rescale audio prior to preprocessing
